@@ -10,6 +10,27 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+
+ 
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
+              outputPath: 'dist/images',
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
@@ -19,7 +40,6 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     static: path.resolve(__dirname, './dist'),
     hot: true,
