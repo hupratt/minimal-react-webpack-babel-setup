@@ -4,6 +4,7 @@ import head_chef from '../images/head_chef.jpg';
 import logo_footer from '../images/logo_footer.png';
 import salad from '../images/salad.jpg';
 import littleLemonHeader from '../images/littleLemonHeader.png';
+import marioAndAdrian from '../images/mario-and-adrian.jpg';
 
 export default function AboutScreen() {
   return (
@@ -80,10 +81,7 @@ export default function AboutScreen() {
 
               <div className="column">
                 <figure className="figure">
-                  <img
-                    src="images/mario-and-adrian.jpg"
-                    alt="Mario and Adrian"
-                  />
+                  <img src={marioAndAdrian} alt="Mario and Adrian" />
                   <figcaption className="figure-caption">
                     Little Lemon owners Mario and Adrian.
                   </figcaption>
