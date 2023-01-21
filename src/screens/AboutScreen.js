@@ -40,8 +40,8 @@ export default function AboutScreen() {
         <section>
           <article>
             <h1>About Us</h1>
-            <div class="row">
-              <div class="column">
+            <div className="row">
+              <div className="column">
                 <p>
                   Based in Chicago, Illinois, Little Lemon is a family
                   owned Mediterranean restaurant, focused on
@@ -78,13 +78,13 @@ export default function AboutScreen() {
                 </p>
               </div>
 
-              <div class="column">
-                <figure class="figure">
+              <div className="column">
+                <figure className="figure">
                   <img
                     src="images/mario-and-adrian.jpg"
                     alt="Mario and Adrian"
                   />
-                  <figcaption class="figure-caption">
+                  <figcaption className="figure-caption">
                     Little Lemon owners Mario and Adrian.
                   </figcaption>
                 </figure>
