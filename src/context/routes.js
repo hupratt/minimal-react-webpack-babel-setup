@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NavBarFooter from '../components/NavBarFooter';
-import BookATable from '../screens/BookATable';
+import BookingForm from '../components/BookingForm';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import AboutScreen from '../screens/AboutScreen';
 import MenuItems from '../components/MenuItems';
@@ -26,11 +26,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <WelcomeScreen />,
+        element: <BookingForm />,
       },
       {
         path: 'book',
-        element: <BookATable />,
+        element: <BookingForm />,
       },
       {
         path: 'about',

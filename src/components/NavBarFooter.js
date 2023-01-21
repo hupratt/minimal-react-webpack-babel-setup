@@ -4,7 +4,7 @@ import AboutScreen from '../screens/AboutScreen';
 import { AlertProvider } from '../context/alertContext';
 import React, { useState, useEffect } from 'react';
 import './style.css';
-import BookATable from '../screens/BookATable';
+import BookingForm from '../components/BookingForm';
 import Alert from './Alert';
 
 import littleLemonHeader from '../images/littleLemonHeader.png';

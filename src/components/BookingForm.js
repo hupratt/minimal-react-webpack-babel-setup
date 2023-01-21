@@ -19,10 +19,10 @@ import { useAlertContext } from '../context/alertContext';
 import Loading from '../images/loading.gif';
 import { useState } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import { ChakraBaseProvider } from '@chakra-ui/react';
+import { Radio, RadioGroup, Stack } from '@chakra-ui/react';
 // `@chakra-ui/theme` is a part of the base install with `@chakra-ui/react`
 
-const LandingSection = () => {
+const BookingForm = () => {
   const { isLoading, response, submit } = useSubmit();
   console.log('response' + response);
   const { onOpen } = useAlertContext();
@@ -38,8 +38,10 @@ const LandingSection = () => {
     initialValues: {
       firstName: '',
       email: '',
+      guests: 1,
       type: '',
       comment: '',
+      dateTime: '',
     },
     onSubmit: (data) => {
       console.log(`isLoading: ${isLoading}`);
@@ -52,6 +54,7 @@ const LandingSection = () => {
 
     validationSchema: Yup.object({
       firstName: Yup.string().required('Required'),
+      dateTime: Yup.string().required('Required'),
       comment: Yup.string().required('Required'),
       email: Yup.string()
         .email('Invalid email address')
@@ -80,6 +83,48 @@ const LandingSection = () => {
               }}
             >
               <VStack spacing={4}>
+                <FormControl
+                  isInvalid={
+                    formik.errors.dateTime && formik.touched.dateTime
+                  }
+                >
+                  <FormLabel htmlFor="dateTime">
+                    Select Date and Time
+                  </FormLabel>
+                  <Input
+                    placeholder="Select Date and Time"
+                    size="md"
+                    onChange={formik.handleChange}
+                    type="datetime-local"
+                    {...formik.getFieldProps('dateTime')}
+                  />
+
+                  <FormErrorMessage>
+                    {formik.errors.dateTime}
+                  </FormErrorMessage>
+                </FormControl>
+
+                <FormControl
+                  isInvalid={
+                    formik.errors.guests && formik.touched.guests
+                  }
+                >
+                  <FormLabel htmlFor="guests">
+                    Number of guests
+                  </FormLabel>
+                  <RadioGroup onChange={formik.handleChange}>
+                    <Stack direction="row">
+                      <Radio value="1">1</Radio>
+                      <Radio value="2">2</Radio>
+                      <Radio value="3">3+</Radio>
+                    </Stack>
+                  </RadioGroup>
+
+                  <FormErrorMessage>
+                    {formik.errors.guests}
+                  </FormErrorMessage>
+                </FormControl>
+
                 <FormControl
                   isInvalid={
                     formik.errors.firstName &&
@@ -116,21 +161,18 @@ const LandingSection = () => {
                   </FormErrorMessage>
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="type">
-                    Type of enquiry
-                  </FormLabel>
+                  <FormLabel htmlFor="type">Occasion</FormLabel>
                   <Select
                     id="type"
                     name="type"
                     onChange={formik.handleChange}
                     {...formik.getFieldProps('type')}
                   >
-                    <option value="hireMe">
-                      Freelance project proposal
+                    <option value="newb">
+                      I'm not good at cooking so I come here
                     </option>
-                    <option value="openSource">
-                      Open source consultancy session
-                    </option>
+                    <option value="Birthday">Birthday</option>
+                    <option value="Anniversary">Anniversary</option>
                     <option value="other">Other</option>
                   </Select>
                 </FormControl>
@@ -140,7 +182,7 @@ const LandingSection = () => {
                   }
                 >
                   <FormLabel htmlFor="comment">
-                    Your message
+                    Do you have any special requests or allergies?
                   </FormLabel>
                   <Textarea
                     id="comment"
@@ -180,4 +222,4 @@ const LandingSection = () => {
   );
 };
 
-export default LandingSection;
+export default BookingForm;
