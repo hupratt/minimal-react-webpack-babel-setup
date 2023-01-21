@@ -4,10 +4,9 @@ import head_chef from '../images/head_chef.jpg';
 import logo_footer from '../images/logo_footer.png';
 import salad from '../images/salad.jpg';
 
-export default function WelcomeScreen({ children }) {
+export default function WelcomeScreen() {
   return (
     <>
-      {children}
       <main>
         <section>
           <article id="hero">
@@ -56,15 +55,6 @@ export default function WelcomeScreen({ children }) {
           </article>
         </section>
       </main>
-
-      <footer>
-        <article>
-          <img src={logo_footer} />
-        </article>
-        <article>
-          <p>Copyright Little Lemon</p>
-        </article>
-      </footer>
     </>
   );
 }

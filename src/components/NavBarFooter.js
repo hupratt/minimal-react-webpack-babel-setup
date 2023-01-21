@@ -8,9 +8,9 @@ import './style.css';
 import BookATable from '../screens/BookATable';
 import Alert from './Alert';
 import littleLemonHeader from '../images/littleLemonHeader.png';
-import { Link } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
-export default function NavBarFooter({ children }) {
+export default function NavBarFooter() {
   return (
     <ChakraProvider>
       <AlertProvider>
@@ -43,7 +43,9 @@ export default function NavBarFooter({ children }) {
             </ul>
           </nav>
 
-          <div style={styles.container}>{children}</div>
+          <div style={styles.container}>
+            <Outlet />
+          </div>
           <div style={styles.footerContainer}>
             <LittleLemonFooter />
           </div>

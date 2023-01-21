@@ -2,57 +2,15 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import logo from './images/logo.png';
 import NavBarFooter from './components/NavBarFooter';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
 import BookATable from './screens/BookATable';
 import WelcomeScreen from './screens/WelcomeScreen';
 import AboutScreen from './screens/AboutScreen';
 import MenuItems from './components/MenuItems';
 import ErrorPage from './components/ErrorPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: (
-      <NavBarFooter>
-        <WelcomeScreen />
-      </NavBarFooter>
-    ),
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/book/',
-    element: (
-      <NavBarFooter>
-        <BookATable />
-      </NavBarFooter>
-    ),
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/about/',
-    element: (
-      <NavBarFooter>
-        <AboutScreen />
-      </NavBarFooter>
-    ),
-    errorElement: <ErrorPage />,
-  },
-
-  {
-    path: '/menu/',
-    element: (
-      <NavBarFooter>
-        <MenuItems />
-      </NavBarFooter>
-    ),
-    errorElement: <ErrorPage />,
-  },
-]);
 
 root.render(
   <StrictMode>
@@ -74,7 +32,16 @@ root.render(
     <meta name="og:image" content={logo} />
     <link rel="apple-touch-icon" href={logo} />
     <link rel="manifest" href="/manifest.json" />
-
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<NavBarFooter />}>
+          <Route index element={<WelcomeScreen />} />
+          <Route exact path="book" element={<BookATable />} />
+          <Route path="about" element={<AboutScreen />} />
+          <Route path="menu" element={<MenuItems />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </StrictMode>
 );
