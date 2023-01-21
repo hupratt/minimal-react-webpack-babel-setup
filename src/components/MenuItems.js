@@ -1,16 +1,3 @@
-import {
-  ChakraProvider,
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Heading,
-  Center,
-  SimpleGrid,
-} from '@chakra-ui/react';
-
 const menuItemsToDisplay = [
   {
     title: 'Appetizers',
@@ -55,21 +42,7 @@ const menuItemsToDisplay = [
   },
 ];
 
-const Item = ({ name, price }) => (
-  <Card>
-    <CardHeader>
-      <Heading size="md">{name}</Heading>
-    </CardHeader>
-    <CardBody>
-      <Text>
-        View a summary of all your customers over the last month.
-      </Text>
-    </CardBody>
-    <CardFooter>
-      <Button>{price}</Button>
-    </CardFooter>
-  </Card>
-);
+const Item = ({ name, price }) => <p size="md">{name}</p>;
 
 const MenuItems = () => {
   const renderItem = (item) => (
@@ -82,14 +55,8 @@ const MenuItems = () => {
         return (
           <div style={menuStyles.headerStyle} key={menuItems.title}>
             <p style={menuStyles.sectionHeader}>{menuItems.title}</p>
-            <ChakraProvider>
-              <SimpleGrid
-                spacing={4}
-                templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
-              >
-                {menuItems.data.map((data) => renderItem(data))}
-              </SimpleGrid>
-            </ChakraProvider>
+
+            {menuItems.data.map((data) => renderItem(data))}
           </div>
         );
       })}

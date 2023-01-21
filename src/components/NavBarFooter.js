@@ -1,65 +1,57 @@
 import LittleLemonFooter from './LittleLemonFooter';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import AboutScreen from '../screens/AboutScreen';
-import { ChakraProvider } from '@chakra-ui/react';
 import { AlertProvider } from '../context/alertContext';
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import BookATable from '../screens/BookATable';
 import Alert from './Alert';
+
 import littleLemonHeader from '../images/littleLemonHeader.png';
 import { Outlet, Link } from 'react-router-dom';
 
 export default function NavBarFooter() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setError] = useState(null);
   return (
     <React.Fragment>
-      {isLoading && <p>Loading...</p>}
-      {isError && !isLoading && (
-        <p>Oops! An Error has Occurred, Try Again</p>
-      )}
-      <ChakraProvider>
-        <AlertProvider>
-          <main>
-            <header>
-              <img src={littleLemonHeader} />
-            </header>
-            <nav className="stroke">
-              <ul>
-                <li>
-                  <Link to="/" className="active">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link to="about/" className="">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link to="menu/" className="">
-                    Menu
-                  </Link>
-                </li>
-                <li>
-                  <Link to="book/" className="">
-                    Book
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+      <AlertProvider>
+        <main>
+          <header>
+            <img src={littleLemonHeader} />
+          </header>
+          <nav className="stroke">
+            <ul>
+              <li>
+                <Link to="/" className="active">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="about/" className="">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to="menu/" className="">
+                  Menu
+                </Link>
+              </li>
+              <li>
+                <Link to="book/" className="">
+                  Book
+                </Link>
+              </li>
+            </ul>
+          </nav>
 
-            <div style={styles.container}>
-              <Outlet />
-            </div>
-            <div style={styles.footerContainer}>
-              <LittleLemonFooter />
-            </div>
-            <Alert />
-          </main>
-        </AlertProvider>
-      </ChakraProvider>
+          <div style={styles.container}>
+            <Outlet />
+          </div>
+          <div style={styles.footerContainer}>
+            <LittleLemonFooter />
+          </div>
+          <Alert />
+        </main>
+      </AlertProvider>
     </React.Fragment>
   );
 }
