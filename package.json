@@ -36,6 +36,7 @@
     "framer-motion": "^8.5.0",
     "react": "*",
     "react-dom": "*",
+    "react-router-dom": "^6.7.0",
     "yup": "*"
   }
 }

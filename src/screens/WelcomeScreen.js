@@ -3,61 +3,17 @@ import Grill from '../images/Grill.jpg';
 import head_chef from '../images/head_chef.jpg';
 import logo_footer from '../images/logo_footer.png';
 import salad from '../images/salad.jpg';
-import littleLemonHeader from "../images/littleLemonHeader.png";
 
-
-export default function WelcomeScreen() {
+export default function WelcomeScreen({ children }) {
   return (
     <>
-      <header>
-        <img src={littleLemonHeader} />
-      </header>
-      <nav className="stroke">
-        <ul>
-          <li>
-            <a
-              href=""
-              className="active"
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              href="about/"
-              className=""
-            >
-              About
-            </a>
-          </li>
-          <li>
-            <a
-              href="menu/"
-              className=""
-            >
-              Menu
-            </a>
-          </li>
-          <li>
-            <a
-              href="book/"
-              className=""
-            >
-              Book
-            </a>
-          </li>
-        </ul>
-      </nav>
-
+      {children}
       <main>
         <section>
           <article id="hero">
             <h1 className="heading_shadow">SPECIAL OFFER</h1>
             <p>30% Off This Weekend</p>
-            <a
-              href="book/"
-              className="cta"
-            >
+            <a href="book/" className="cta">
               Book now
             </a>
           </article>
@@ -71,9 +27,7 @@ export default function WelcomeScreen() {
               Italian, Greek, and Turkish culture.
             </p>
             <p>
-              <a href="menu/">
-                See our new menu
-              </a>
+              <a href="menu/">See our new menu</a>
             </p>
           </article>
           <article>
@@ -84,9 +38,7 @@ export default function WelcomeScreen() {
               dining experience.
             </p>
             <p>
-              <a href="book/">
-                Book your table now
-              </a>
+              <a href="book/">Book your table now</a>
             </p>
           </article>
           <article>

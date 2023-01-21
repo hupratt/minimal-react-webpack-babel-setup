@@ -1,5 +1,3 @@
-
-
 const menuItemsToDisplay = [
   {
     title: 'Appetizers',
@@ -52,7 +50,9 @@ const Item = ({ name, price }) => (
 );
 
 const MenuItems = () => {
-  const renderItem = ({ item }) => <Item name={item.name} price={item.price} />;
+  const renderItem = ({ item }) => (
+    <Item name={item.name} price={item.price} />
+  );
 
   const renderSectionHeader = ({ section: { title } }) => (
     <div style={menuStyles.headerStyle}>
@@ -66,7 +66,8 @@ const MenuItems = () => {
         sections={menuItemsToDisplay}
         keyExtractor={(item, index) => item + index}
         renderItem={renderItem}
-        renderSectionHeader={renderSectionHeader}></li> */}
+        renderSectionHeader={renderSectionHeader}
+      ></li> */}
     </div>
   );
 };
