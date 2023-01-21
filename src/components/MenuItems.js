@@ -1,3 +1,16 @@
+import {
+  ChakraProvider,
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Heading,
+  Center,
+  SimpleGrid,
+} from '@chakra-ui/react';
+
 const menuItemsToDisplay = [
   {
     title: 'Appetizers',
@@ -43,29 +56,42 @@ const menuItemsToDisplay = [
 ];
 
 const Item = ({ name, price }) => (
-  <div style={menuStyles.innerContainer}>
-    <p style={menuStyles.itemText}>{name}</p>
-    <p style={menuStyles.itemText}>{price}</p>
-  </div>
+  <Card>
+    <CardHeader>
+      <Heading size="md">{name}</Heading>
+    </CardHeader>
+    <CardBody>
+      <Text>
+        View a summary of all your customers over the last month.
+      </Text>
+    </CardBody>
+    <CardFooter>
+      <Button>{price}</Button>
+    </CardFooter>
+  </Card>
 );
 
 const MenuItems = () => {
-  const renderItem = ({ item }) => (
-    <Item name={item.name} price={item.price} />
-  );
-
-  const renderSectionHeader = ({ section: { title } }) => (
-    <div style={menuStyles.headerStyle}>
-      <p style={menuStyles.sectionHeader}>{title}</p>
-    </div>
+  const renderItem = (item) => (
+    <Item name={item.name} price={item.price} key={item.name} />
   );
 
   return (
     <div style={menuStyles.container}>
       {menuItemsToDisplay.map((menuItems) => {
-        <div style={menuStyles.headerStyle}>
-          <p style={menuStyles.sectionHeader}>{'Appetizers'}</p>
-        </div>;
+        return (
+          <div style={menuStyles.headerStyle} key={menuItems.title}>
+            <p style={menuStyles.sectionHeader}>{menuItems.title}</p>
+            <ChakraProvider>
+              <SimpleGrid
+                spacing={4}
+                templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+              >
+                {menuItems.data.map((data) => renderItem(data))}
+              </SimpleGrid>
+            </ChakraProvider>
+          </div>
+        );
       })}
     </div>
   );

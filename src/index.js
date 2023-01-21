@@ -1,7 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import logo from './images/logo.png';
-import { BrowserRouter } from 'react-router-dom';
 import ReactRouterRoutes from './context/routes';
 
 const rootElement = document.getElementById('root');
@@ -27,8 +26,6 @@ root.render(
     <meta name="og:image" content={logo} />
     <link rel="apple-touch-icon" href={logo} />
     <link rel="manifest" href="/manifest.json" />
-    <BrowserRouter>
-      <ReactRouterRoutes />
-    </BrowserRouter>
+    <ReactRouterRoutes />
   </StrictMode>
 );

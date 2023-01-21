@@ -14,24 +14,36 @@ import {
   Navigate,
   useNavigate,
   useRouteError,
+  createBrowserRouter,
+  RouterProvider,
 } from 'react-router-dom';
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <NavBarFooter />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/',
+        element: <WelcomeScreen />,
+      },
+      {
+        path: 'book',
+        element: <BookATable />,
+      },
+      {
+        path: 'about',
+        element: <AboutScreen />,
+      },
+      {
+        path: 'menu',
+        element: <MenuItems />,
+      },
+    ],
+  },
+]);
+
 export default function ReactRouterRoutes() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  React.useEffect(() => {
-    console.log(location.pathname);
-    //navigate(location.pathname);
-  }, [location]);
-  return (
-    <Routes>
-      <Route path="/" element={<NavBarFooter />}>
-        <Route path="*" element={<ErrorPage />} />
-        <Route index element={<WelcomeScreen />} />
-        <Route exact path="book" element={<BookATable />} />
-        <Route exact path="about" element={<AboutScreen />} />
-        <Route exact path="menu" element={<MenuItems />} />
-      </Route>
-    </Routes>
-  );
+  return <RouterProvider router={router} />;
 }
