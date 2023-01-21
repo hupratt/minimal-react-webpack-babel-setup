@@ -62,12 +62,11 @@ const MenuItems = () => {
 
   return (
     <div style={menuStyles.container}>
-      {/* <li
-        sections={menuItemsToDisplay}
-        keyExtractor={(item, index) => item + index}
-        renderItem={renderItem}
-        renderSectionHeader={renderSectionHeader}
-      ></li> */}
+      {menuItemsToDisplay.map((menuItems) => {
+        <div style={menuStyles.headerStyle}>
+          <p style={menuStyles.sectionHeader}>{'Appetizers'}</p>
+        </div>;
+      })}
     </div>
   );
 };

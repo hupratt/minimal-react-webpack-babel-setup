@@ -1,13 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import logo from './images/logo.png';
-import NavBarFooter from './components/NavBarFooter';
-import BookATable from './screens/BookATable';
-import WelcomeScreen from './screens/WelcomeScreen';
-import AboutScreen from './screens/AboutScreen';
-import MenuItems from './components/MenuItems';
-import ErrorPage from './components/ErrorPage';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import ReactRouterRoutes from './context/routes';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
@@ -33,15 +28,7 @@ root.render(
     <link rel="apple-touch-icon" href={logo} />
     <link rel="manifest" href="/manifest.json" />
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<NavBarFooter />}>
-          <Route index element={<WelcomeScreen />} />
-          <Route exact path="book" element={<BookATable />} />
-          <Route path="about" element={<AboutScreen />} />
-          <Route path="menu" element={<MenuItems />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
+      <ReactRouterRoutes />
     </BrowserRouter>
   </StrictMode>
 );

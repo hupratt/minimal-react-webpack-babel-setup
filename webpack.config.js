@@ -15,7 +15,6 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
 
- 
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
@@ -39,9 +38,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   devServer: {
     static: path.resolve(__dirname, './dist'),
     hot: true,
+    historyApiFallback: true,
   },
 };

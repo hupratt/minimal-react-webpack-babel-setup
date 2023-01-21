@@ -10,7 +10,9 @@ export default function WelcomeScreen() {
       <main>
         <section>
           <article id="hero">
-            <h1 className="heading_shadow">SPECIAL OFFER</h1>
+            <h1 style={styles.h1} className="heading_shadow">
+              SPECIAL OFFER
+            </h1>
             <p>30% Off This Weekend</p>
             <a href="book/" className="cta">
               Book now
@@ -19,7 +21,7 @@ export default function WelcomeScreen() {
         </section>
         <section>
           <article>
-            <h2>Our New Menu</h2>
+            <h2 style={styles.h2}>Our New Menu</h2>
             <img src={Grill} />
             <p>
               Our menu consists of 12-15 seasonal items based on
@@ -30,7 +32,7 @@ export default function WelcomeScreen() {
             </p>
           </article>
           <article>
-            <h2>Book a table</h2>
+            <h2 style={styles.h2}>Book a table</h2>
             <img src={salad} />
             <p>
               Reserve your table for an Italian, Greek, and Turkish
@@ -41,7 +43,7 @@ export default function WelcomeScreen() {
             </p>
           </article>
           <article>
-            <h2>Opening Hours</h2>
+            <h2 style={styles.h2}>Opening Hours</h2>
             <img src={head_chef} />
             <p>
               The Little Lemon Restaurant is open 7 days a week,
@@ -60,33 +62,14 @@ export default function WelcomeScreen() {
 }
 
 const styles = {
-  container: {
-    flex: 1,
+  h2: {
+    fontSize: '2.5rem',
+    color: '#333333',
+    margin: '1rem 0',
   },
-  headerWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    margin: 10,
-  },
-  headerText: {
-    paddingRight: 10,
-    paddingLeft: 20,
-    paddingTop: 30,
-    paddingBottom: 10,
-    fontSize: 30,
-    color: '#000',
-    textAlign: 'center',
-  },
-  regularText: {
-    fontSize: 24,
-    padding: 20,
-    marginVertical: 8,
-    color: '#000',
-    textAlign: 'center',
-  },
-  image: {
-    width: 100,
-    height: 100,
-    borderRadius: 20,
+  h1: {
+    fontSize: '4rem',
+    marginTop: '1.5rem',
+    marginBottom: '0',
   },
 };

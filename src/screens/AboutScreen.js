@@ -11,7 +11,7 @@ export default function AboutScreen() {
     <>
       <section>
         <article>
-          <h1>About Us</h1>
+          <h1 style={styles.h1}>About Us</h1>
           <div className="row">
             <div className="column">
               <p>
@@ -66,6 +66,11 @@ export default function AboutScreen() {
 }
 
 const styles = {
+  h1: {
+    fontSize: '4rem',
+    marginTop: '1.5rem',
+    marginBottom: '0',
+  },
   container: {
     flex: 1,
   },
