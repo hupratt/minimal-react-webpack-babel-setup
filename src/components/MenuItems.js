@@ -1,3 +1,6 @@
+import Card from '../components/Card';
+import Grid from '@mui/material/Grid';
+
 const menuItemsToDisplay = [
   {
     title: 'Appetizers',
@@ -41,12 +44,9 @@ const menuItemsToDisplay = [
     ],
   },
 ];
-
-const Item = ({ name, price }) => <p size="md">{name}</p>;
-
 const MenuItems = () => {
   const renderItem = (item) => (
-    <Item name={item.name} price={item.price} key={item.name} />
+    <Card name={item.name} price={item.price} key={item.name} />
   );
 
   return (
@@ -55,8 +55,9 @@ const MenuItems = () => {
         return (
           <div style={menuStyles.headerStyle} key={menuItems.title}>
             <p style={menuStyles.sectionHeader}>{menuItems.title}</p>
-
-            {menuItems.data.map((data) => renderItem(data))}
+            <Grid container justifyContent="center">
+              {menuItems.data.map((data) => renderItem(data))}
+            </Grid>
           </div>
         );
       })}
