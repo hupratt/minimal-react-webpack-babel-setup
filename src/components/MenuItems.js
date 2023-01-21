@@ -80,7 +80,7 @@ const menuStyles = {
     fontSize: 20,
   },
   headerStyle: {
-    backgroundColor: '#F4CE14',
+    backgroundColor: '#EDEFEE',
   },
   sectionHeader: {
     color: 'black',

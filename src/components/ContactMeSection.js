@@ -63,7 +63,7 @@ const LandingSection = () => {
     <ChakraProvider>
       <FullScreenSection
         isDarkBackground
-        backgroundColor="#512DA8"
+        backgroundColor="#495E57"
         py={16}
         spacing={8}
       >
@@ -159,7 +159,8 @@ const LandingSection = () => {
                 ) : (
                   <Button
                     type="submit"
-                    colorScheme="purple"
+                    colorScheme="green"
+                    style={{ background: 'rgb(103, 130, 121)' }}
                     width="full"
                     disabled={
                       formik.errors.comment ||

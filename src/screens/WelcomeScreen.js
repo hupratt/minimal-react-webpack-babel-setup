@@ -1,8 +1,8 @@
 import logo from '../images/logo.png';
 import Grill from '../images/Grill.jpg';
 import head_chef from '../images/head_chef.jpg';
-import logo_footer from '../images/logo_footer.png';
 import salad from '../images/salad.jpg';
+import { Link } from 'react-router-dom';
 
 export default function WelcomeScreen() {
   return (
@@ -14,9 +14,9 @@ export default function WelcomeScreen() {
               SPECIAL OFFER
             </h1>
             <p>30% Off This Weekend</p>
-            <a href="book/" className="cta">
+            <Link to="book/" className="cta">
               Book now
-            </a>
+            </Link>
           </article>
         </section>
         <section>
@@ -28,7 +28,7 @@ export default function WelcomeScreen() {
               Italian, Greek, and Turkish culture.
             </p>
             <p>
-              <a href="menu/">See our new menu</a>
+              <Link to="menu/">See our new menu</Link>
             </p>
           </article>
           <article>
@@ -39,7 +39,7 @@ export default function WelcomeScreen() {
               dining experience.
             </p>
             <p>
-              <a href="book/">Book your table now</a>
+              <Link to="book/">Book your table now</Link>
             </p>
           </article>
           <article>

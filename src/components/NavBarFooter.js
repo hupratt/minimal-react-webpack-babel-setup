@@ -37,7 +37,7 @@ export default function NavBarFooter() {
               </li>
               <li>
                 <Link to="book/" className="">
-                  Book
+                  Book A Table
                 </Link>
               </li>
             </ul>
