@@ -9,6 +9,7 @@ import ErrorPage from '../components/ErrorPage';
 import MenuItems from '../components/MenuItems';
 import ConfirmedBooking from '../components/ConfirmedBooking';
 import AboutScreen from '../screens/AboutScreen';
+import WelcomeScreen from '../screens/WelcomeScreen';
 import Main from '../screens/Main';
 
 const routesConfig = [
@@ -19,7 +20,7 @@ const routesConfig = [
     children: [
       {
         path: '/',
-        element: <BookingForm />,
+        element: <WelcomeScreen />,
       },
       {
         path: 'book',
