@@ -51,8 +51,9 @@ const BookingForm = () => {
       comment: '',
       dateTime: new Date(),
     },
-    onSubmit: (data) => {
-      submit();
+    onSubmit: (formData) => {
+      console.log(formData);
+      submit(formData);
     },
 
     validationSchema: Yup.object({
