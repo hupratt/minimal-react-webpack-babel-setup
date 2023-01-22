@@ -1,6 +1,3 @@
-import setHours from 'date-fns/setHours';
-import setMinutes from 'date-fns/setMinutes';
-
 const updateObject = (oldObject, updatedProperties) => {
   return {
     ...oldObject,
@@ -20,6 +17,10 @@ export default function reducer(state, action) {
           ...state.availableTimes,
           action.availableTimes,
         ],
+      });
+    case 'initbooking':
+      return updateObject(state, {
+        availableTimes: action.availableTimes,
       });
 
     default:

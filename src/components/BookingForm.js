@@ -24,17 +24,21 @@ import DatePicker from 'react-datepicker';
 
 import { useOutletContext } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useNavigate } from 'react-router-dom';
 
 const BookingForm = () => {
   // I use useOutletContext because i can't pass down the props above as i'm using a data router hook to create the react router
-  const [startDate, availableTimes, updateTimes] = useOutletContext();
-  const { isLoading, response, submit } = useSubmit();
+  const [startDate, availableTimes, updateTimes, submitForm] =
+    useOutletContext();
+  const navigate = useNavigate();
+  const { isLoading, response, submit } = useSubmit(submitForm);
   const { onOpen } = useAlertContext();
   // open the alert window once the state is updated
   useEffect(() => {
     response && onOpen(response.type, response.message);
     if (response && response.type == 'success') {
       formik.resetForm();
+      navigate('/bookingconfirmed');
     }
   }, [response]);
 
@@ -45,20 +49,16 @@ const BookingForm = () => {
       guests: 1,
       type: '',
       comment: '',
-      dateTime: '',
+      dateTime: new Date(),
     },
     onSubmit: (data) => {
-      console.log(`isLoading: ${isLoading}`);
-      console.log(`response: ${response}`);
-      console.log(`submit: ${submit}`);
-      // console.log(response);
-      // submit('/', data);
+      submit();
     },
 
     validationSchema: Yup.object({
       firstName: Yup.string().required('Required'),
-      dateTime: Yup.string().required('Required'),
       comment: Yup.string().required('Required'),
+      dateTime: Yup.string().required('Required'),
       email: Yup.string()
         .email('Invalid email address')
         .required('Required'),
@@ -78,7 +78,7 @@ const BookingForm = () => {
       >
         <VStack w="1024px" p={32} alignItems="flex-start">
           <Heading as="h1" id="contactme-section">
-            Contact me
+            Contact us
           </Heading>
           <Box p={6} rounded="md" w="100%">
             <form

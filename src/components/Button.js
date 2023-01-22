@@ -1,7 +1,7 @@
-
-const Button = ({onPress, children, disabled}) => {
+const Button = ({ onPress, children, disabled }) => {
   return (
     <button
+      aria-label="On Click"
       onClick={onPress}
       style={[styles.buttonWrapper, disabled && styles.disabled]}
       disabled={disabled}
@@ -26,7 +26,7 @@ const styles = {
   text: {
     fontSize: 16,
     color: 'white',
-  }
+  },
 };
 
 export default Button;

@@ -1,27 +1,20 @@
 import * as React from 'react';
-import NavBarFooter from '../screens/Main';
-import BookingForm from '../components/BookingForm';
-import WelcomeScreen from '../screens/WelcomeScreen';
-import AboutScreen from '../screens/AboutScreen';
-import MenuItems from '../components/MenuItems';
-import ErrorPage from '../components/ErrorPage';
 import {
-  BrowserRouter,
-  HashRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-  Navigate,
-  useNavigate,
-  useRouteError,
   createBrowserRouter,
   RouterProvider,
+  createMemoryRouter,
 } from 'react-router-dom';
+import BookingForm from '../components/BookingForm';
+import ErrorPage from '../components/ErrorPage';
+import MenuItems from '../components/MenuItems';
+import ConfirmedBooking from '../components/ConfirmedBooking';
+import AboutScreen from '../screens/AboutScreen';
+import Main from '../screens/Main';
 
-const router = createBrowserRouter([
+const routesConfig = [
   {
     path: '/',
-    element: <NavBarFooter />,
+    element: <Main />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -40,9 +33,17 @@ const router = createBrowserRouter([
         path: 'menu',
         element: <MenuItems />,
       },
+      {
+        path: 'bookingconfirmed',
+        element: <ConfirmedBooking />,
+      },
     ],
   },
-]);
+];
+
+const router = createBrowserRouter(routesConfig, {
+  initialEntries: ['/'],
+});
 
 export default function ReactRouterRoutes() {
   return <RouterProvider router={router} />;

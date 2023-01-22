@@ -1,6 +1,6 @@
 import LittleLemonFooter from '../components/LittleLemonFooter';
 import { AlertProvider } from '../context/alertContext';
-import React, { useState, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import './style.css';
 import Alert from '../components/Alert';
 
@@ -10,24 +10,27 @@ import reducer from '../reducers';
 import setHours from 'date-fns/setHours';
 import setMinutes from 'date-fns/setMinutes';
 
-const initializeTimes = () => {
-  let randomDates = [];
-  for (var j = 21; j < 31; j++) {
-    for (var i = 15; i < 22; i++) {
-      randomDates.push(new Date(2023, 1, j, i, 0));
-    }
-  }
-  return randomDates;
-};
+import { submitAPI, fetchAPI } from '../util';
 
 const initialState = {
-  startDate: setHours(setMinutes(new Date(), 30), 16),
-  availableTimes: initializeTimes(),
+  startDate: new Date(),
+  availableTimes: [],
 };
 
 export default function Main() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { startDate, availableTimes } = state;
+  const initializeTimes = () => {
+    const response = fetchAPI(new Date());
+    dispatch({ type: 'initbooking', availableTimes: response });
+  };
+  const submitForm = (formData) => {
+    submitAPI(formData);
+  };
+
+  useEffect(() => {
+    initializeTimes();
+  }, []);
   return (
     <React.Fragment>
       <AlertProvider>
@@ -61,7 +64,14 @@ export default function Main() {
           </nav>
 
           <div style={styles.container}>
-            <Outlet context={[startDate, availableTimes, dispatch]} />
+            <Outlet
+              context={[
+                startDate,
+                availableTimes,
+                dispatch,
+                submitForm,
+              ]}
+            />
           </div>
           <div style={styles.footerContainer}>
             <LittleLemonFooter />

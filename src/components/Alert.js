@@ -26,11 +26,19 @@ function Alert() {
         <AlertDialogContent
           py={4}
           backgroundColor={isSuccess ? '#81C784' : '#FF8A65'}
+          style={{ maxHeight: '100px' }}
         >
-          <AlertDialogHeader fontSize="lg" fontWeight="bold">
+          <AlertDialogHeader
+            fontSize="lg"
+            fontWeight="bold"
+            style={{ paddingLeft: '20px' }}
+          >
             {isSuccess ? 'All good!' : 'Oops!'}
           </AlertDialogHeader>
-          <AlertDialogBody>{message}</AlertDialogBody>
+
+          <AlertDialogBody style={{ paddingLeft: '20px' }}>
+            {message}
+          </AlertDialogBody>
         </AlertDialogContent>
       </AlertDialogOverlay>
     </AlertDialog>
