@@ -20,7 +20,6 @@ import Loading from '../images/loading.gif';
 import { useState } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Radio, RadioGroup, Stack } from '@chakra-ui/react';
-// `@chakra-ui/theme` is a part of the base install with `@chakra-ui/react`
 import DatePicker from 'react-datepicker';
 
 import { useOutletContext } from 'react-router-dom';

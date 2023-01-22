@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NavBarFooter from '../Main';
+import NavBarFooter from '../screens/Main';
 import BookingForm from '../components/BookingForm';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import AboutScreen from '../screens/AboutScreen';

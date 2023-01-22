@@ -1,15 +1,12 @@
-import LittleLemonFooter from './components/LittleLemonFooter';
-import WelcomeScreen from './screens/WelcomeScreen';
-import AboutScreen from './screens/AboutScreen';
-import { AlertProvider } from './context/alertContext';
+import LittleLemonFooter from '../components/LittleLemonFooter';
+import { AlertProvider } from '../context/alertContext';
 import React, { useState, useReducer } from 'react';
 import './style.css';
-import BookingForm from './components/BookingForm';
-import Alert from './components/Alert';
+import Alert from '../components/Alert';
 
-import littleLemonHeader from './images/littleLemonHeader.png';
+import littleLemonHeader from '../images/littleLemonHeader.png';
 import { Outlet, Link } from 'react-router-dom';
-import reducer from './reducer';
+import reducer from '../reducers';
 import setHours from 'date-fns/setHours';
 import setMinutes from 'date-fns/setMinutes';
 
