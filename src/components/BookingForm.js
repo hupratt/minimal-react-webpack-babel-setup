@@ -21,8 +21,16 @@ import { useState } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Radio, RadioGroup, Stack } from '@chakra-ui/react';
 // `@chakra-ui/theme` is a part of the base install with `@chakra-ui/react`
+import DatePicker from 'react-datepicker';
+import setHours from 'date-fns/setHours';
+import setMinutes from 'date-fns/setMinutes';
 
-const BookingForm = () => {
+import 'react-datepicker/dist/react-datepicker.css';
+
+const BookingForm = ({ availableTimes, setavailableTimes }) => {
+  const [startDate, setStartDate] = useState(
+    setHours(setMinutes(new Date(), 30), 16)
+  );
   const { isLoading, response, submit } = useSubmit();
   console.log('response' + response);
   const { onOpen } = useAlertContext();
@@ -48,7 +56,6 @@ const BookingForm = () => {
       console.log(`response: ${response}`);
       console.log(`submit: ${submit}`);
       // console.log(response);
-
       // submit('/', data);
     },
 
@@ -61,6 +68,9 @@ const BookingForm = () => {
         .required('Required'),
     }),
   });
+  const isInPast = (date) => {
+    return date > new Date();
+  };
 
   return (
     <ChakraProvider>
@@ -91,13 +101,28 @@ const BookingForm = () => {
                   <FormLabel htmlFor="dateTime">
                     Select Date and Time
                   </FormLabel>
-                  <Input
+                  <DatePicker
+                    showTimeSelect
+                    withPortal
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    filterDate={isInPast}
+                    // onChange={formik.handleChange}
+                    excludeTimes={[
+                      setHours(setMinutes(new Date(), 0), 17),
+                      setHours(setMinutes(new Date(), 30), 18),
+                      setHours(setMinutes(new Date(), 30), 19),
+                      setHours(setMinutes(new Date(), 30), 17),
+                    ]}
+                    dateFormat="MMMM d, yyyy h:mm aa"
+                  />
+                  {/* <Input
                     placeholder="Select Date and Time"
                     size="md"
                     onChange={formik.handleChange}
                     type="datetime-local"
                     {...formik.getFieldProps('dateTime')}
-                  />
+                  /> */}
 
                   <FormErrorMessage>
                     {formik.errors.dateTime}

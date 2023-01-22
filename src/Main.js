@@ -1,16 +1,25 @@
-import LittleLemonFooter from './LittleLemonFooter';
-import WelcomeScreen from '../screens/WelcomeScreen';
-import AboutScreen from '../screens/AboutScreen';
-import { AlertProvider } from '../context/alertContext';
+import LittleLemonFooter from './components/LittleLemonFooter';
+import WelcomeScreen from './screens/WelcomeScreen';
+import AboutScreen from './screens/AboutScreen';
+import { AlertProvider } from './context/alertContext';
 import React, { useState, useEffect } from 'react';
 import './style.css';
-import BookingForm from '../components/BookingForm';
-import Alert from './Alert';
+import BookingForm from './components/BookingForm';
+import Alert from './components/Alert';
 
-import littleLemonHeader from '../images/littleLemonHeader.png';
+import littleLemonHeader from './images/littleLemonHeader.png';
 import { Outlet, Link } from 'react-router-dom';
 
-export default function NavBarFooter() {
+let randomDates = [];
+
+for (var j = 21; j < 31; j++) {
+  for (var i = 15; i < 22; i++) {
+    randomDates.push(new Date(2023, 1, j, i, 0));
+  }
+}
+
+export default function Main() {
+  const [availableTimes, setavailableTimes] = useState(randomDates);
   return (
     <React.Fragment>
       <AlertProvider>
@@ -44,7 +53,10 @@ export default function NavBarFooter() {
           </nav>
 
           <div style={styles.container}>
-            <Outlet />
+            <Outlet
+              availableTimes={availableTimes}
+              setavailableTimes={setavailableTimes}
+            />
           </div>
           <div style={styles.footerContainer}>
             <LittleLemonFooter />
