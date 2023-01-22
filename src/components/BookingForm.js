@@ -22,17 +22,14 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { Radio, RadioGroup, Stack } from '@chakra-ui/react';
 // `@chakra-ui/theme` is a part of the base install with `@chakra-ui/react`
 import DatePicker from 'react-datepicker';
-import setHours from 'date-fns/setHours';
-import setMinutes from 'date-fns/setMinutes';
 
+import { useOutletContext } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const BookingForm = ({ availableTimes, setavailableTimes }) => {
-  const [startDate, setStartDate] = useState(
-    setHours(setMinutes(new Date(), 30), 16)
-  );
+const BookingForm = () => {
+  // I use useOutletContext because i can't pass down the props above as i'm using a data router hook to create the react router
+  const [startDate, availableTimes, updateTimes] = useOutletContext();
   const { isLoading, response, submit } = useSubmit();
-  console.log('response' + response);
   const { onOpen } = useAlertContext();
   // open the alert window once the state is updated
   useEffect(() => {
@@ -105,15 +102,15 @@ const BookingForm = ({ availableTimes, setavailableTimes }) => {
                     showTimeSelect
                     withPortal
                     selected={startDate}
-                    onChange={(date) => setStartDate(date)}
+                    onChange={(date) => {
+                      updateTimes({
+                        date,
+                        type: 'setstartdate',
+                      });
+                    }}
                     filterDate={isInPast}
                     // onChange={formik.handleChange}
-                    excludeTimes={[
-                      setHours(setMinutes(new Date(), 0), 17),
-                      setHours(setMinutes(new Date(), 30), 18),
-                      setHours(setMinutes(new Date(), 30), 19),
-                      setHours(setMinutes(new Date(), 30), 17),
-                    ]}
+                    excludeTimes={availableTimes}
                     dateFormat="MMMM d, yyyy h:mm aa"
                   />
                   {/* <Input
@@ -193,9 +190,7 @@ const BookingForm = ({ availableTimes, setavailableTimes }) => {
                     onChange={formik.handleChange}
                     {...formik.getFieldProps('type')}
                   >
-                    <option value="newb">
-                      I'm not good at cooking so I come here
-                    </option>
+                    <option value="newb">I don't like cooking</option>
                     <option value="Birthday">Birthday</option>
                     <option value="Anniversary">Anniversary</option>
                     <option value="other">Other</option>

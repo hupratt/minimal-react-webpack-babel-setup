@@ -2,24 +2,35 @@ import LittleLemonFooter from './components/LittleLemonFooter';
 import WelcomeScreen from './screens/WelcomeScreen';
 import AboutScreen from './screens/AboutScreen';
 import { AlertProvider } from './context/alertContext';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useReducer } from 'react';
 import './style.css';
 import BookingForm from './components/BookingForm';
 import Alert from './components/Alert';
 
 import littleLemonHeader from './images/littleLemonHeader.png';
 import { Outlet, Link } from 'react-router-dom';
+import reducer from './reducer';
+import setHours from 'date-fns/setHours';
+import setMinutes from 'date-fns/setMinutes';
 
-let randomDates = [];
-
-for (var j = 21; j < 31; j++) {
-  for (var i = 15; i < 22; i++) {
-    randomDates.push(new Date(2023, 1, j, i, 0));
+const initializeTimes = () => {
+  let randomDates = [];
+  for (var j = 21; j < 31; j++) {
+    for (var i = 15; i < 22; i++) {
+      randomDates.push(new Date(2023, 1, j, i, 0));
+    }
   }
-}
+  return randomDates;
+};
+
+const initialState = {
+  startDate: setHours(setMinutes(new Date(), 30), 16),
+  availableTimes: initializeTimes(),
+};
 
 export default function Main() {
-  const [availableTimes, setavailableTimes] = useState(randomDates);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { startDate, availableTimes } = state;
   return (
     <React.Fragment>
       <AlertProvider>
@@ -53,10 +64,7 @@ export default function Main() {
           </nav>
 
           <div style={styles.container}>
-            <Outlet
-              availableTimes={availableTimes}
-              setavailableTimes={setavailableTimes}
-            />
+            <Outlet context={[startDate, availableTimes, dispatch]} />
           </div>
           <div style={styles.footerContainer}>
             <LittleLemonFooter />
